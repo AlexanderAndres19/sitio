@@ -124,6 +124,20 @@ var_dump($eresultado);
 
   <!-- fin Formulario 1 -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   <!-- Footer -->
   <footer class=class="container-fluid slider d-flex justify-content-center align-items-center">
     <div class="row text-white py-4 text-white">
