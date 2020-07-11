@@ -1,20 +1,3 @@
-<?php
-
-include_once 'conexion.php';
-
-$sql_leer = 'SELECT * FROM usuarios';
-
-$gsent = $pdo->prepare($sql_leer);
-$gsent->execute();
-
-$eresultado = $gsent->fetchAll();
-
-var_dump($eresultado);
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
