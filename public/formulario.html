@@ -12,10 +12,17 @@
     <style>
         body{
 
-        background: url("images/bg-1.jpg");
+          
+  margin: 0;
+  background-image: url('/public/images/bg-1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+
+        /* background: url("images/bg-1.jpg");
         height: 100vh;
         background-size: cover;
-        background-position: center; 
+        background-position: center;  */
         }  
         
         .bd-placeholder-img {
@@ -39,7 +46,7 @@
   <body>
 <!-- Button whatsapp -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <a href="https://api.whatsapp.com/send?phone=51955081075&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202." class="float" target="_blank">
+    <a href="https://api.whatsapp.com/send?phone=56951148407&text=¡Hola! ¿Te podemos ayudar ?." class="float" target="_blank">
     <i class="fa fa-whatsapp my-float"></i>
     </a>
  <!--Fin Button whatsapp -->
@@ -53,28 +60,27 @@
     <img src="images/logoPng.png" width="90" height="50" class="d-inline-block align-top" alt="Logo Bootstrap">
     </a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <div class="navbar-nav mr-auto ml-auto text-center">
+    <div class="navbar-nav mr-auto ml-auto justify-content-cente">
       <a class="nav-item nav-link " href="index.html">Inicio</a>
-      <a class="nav-item nav-link" href="#">Nosotros</a>
-      <a class="nav-item nav-link active" href="servicio.html">Servicios</a>
-      <a class="nav-item nav-link" href="#">Contacto</a>
+      <a class="nav-item nav-link " href="servicio.html">Servicios</a>
+      <a class="nav-item nav-link" href="https://api.whatsapp.com/send?phone=56951148407&text=¡Hola! ¿Te podemos ayudar ?.">Contacto</a>
     </div>
     <div class="d-flex flex-row justify-content-center nav-link mr-2">
-      <a href="#" class="btn btn-outline-primary nav-link mr-2 " data-toggle="modal" data-target="#signupModal"  >Iniciar Sesión</a>
-      <a href="#" class="btn btn-outline-danger " data-toggle="modal" data-target="#signinModal">Registrate</a>
+     
+      <a href="#" class="btn btn-outline-danger " data-toggle="modal" data-target="#signinModal">Cerrar Sesion</a>
     </div>
     </div>
   </nav>
   <!-- fin menú de navegación -->
 
-  <div class="container">
+  <section class="container my-4">
     <div class="row">
         <div class="col-md-6">
             <div class="well well-sm">
                 <form class="form-horizontal " method="post">
                     <fieldset>
                         <legend class="text-uppercase text-left header text-white text-up">Formulario de contratacion</legend>
-
+                     <div class="row-6">
                         <div class="form-group col-md-8" > <!-- State Button -->
                           <label for="servicios" class="control-label text-white" >Tipo de servicio</label>
                           <select class="form-control" id="servicios" aria-placeholder="Elige el servicio" >
@@ -83,20 +89,21 @@
                               <option value="m3">Construccion</option>
                   
                           </select>                    
-                      </div>
+                        </div>
+                    </div>
 
-                        <div class="form-group text-up">
+                        <div class="form-group text-up row-6">
                            
                             <div class="col-md-8">
                                 <label for="" class="text-white">Nombre</label>
-                                <input id="fname" name="name" type="text" placeholder="Ingresa tu nombre" class="form-control">
+                                <input id="nombre" name="name" type="text" placeholder="Ingresa tu nombre" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             
                             <div class="col-md-8">
                                 <label for="" class="text-white">Apellido</label>
-                                <input id="lname" name="name" type="text" placeholder="Ingresa tu apellido" class="form-control">
+                                <input id="apellido" name="name" type="text" placeholder="Ingresa tu apellido" class="form-control">
                             </div>
                         </div>
 
@@ -104,7 +111,7 @@
                             
                             <div class="col-md-8">
                                 <label for="" class="text-white">Direccion</label>
-                                <input id="email" name="email" type="text" placeholder="Ingresa tu Direccion" class="form-control">
+                                <input id="email" name="email" type="email" placeholder="Ingresa tu Direccion" class="form-control">
                             </div>
                         </div>
 
@@ -112,15 +119,15 @@
                             
                             <div class="col-md-8">
                                 <label for="" class="text-white">Telefono</label>
-                                <input id="phone" name="phone" type="text" placeholder="Ingresa numero de contacto" class="form-control">
+                                <input id="phone" name="phone" type="tel" placeholder="Ingresa numero de contacto" class="form-control">
                             </div>
                         </div>
 
                         <div class="form-group">
                             
                             <div class="col-md-8">
-                              <label for="" class="text-white">Comentarios</label>
-                                <textarea class="form-control" id="message" name="message" placeholder="Ingreasa un mensaje." rows="7"></textarea>
+                              <label for="" class="text-white">Fecha</label>
+                                <input id="phone" name="phone" type="date" placeholder="Ingresa fecha de servicio" class="form-control">
                             </div>
                         </div>
 
@@ -133,7 +140,16 @@
                 </form>
             </div>
         </div>
+
+
+
+
+        
     </div>
+
+
+
+    
 </div>
 
     

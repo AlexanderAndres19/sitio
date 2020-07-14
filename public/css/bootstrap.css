@@ -14,7 +14,13 @@ html {
 
 body {
   margin: 0;
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+
+
+
 
 article,
 aside,
@@ -755,6 +761,7 @@ pre code {
 }
 
 .container {
+  
   position: relative;
   margin-left: auto;
   margin-right: auto;

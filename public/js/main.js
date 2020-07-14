@@ -31,20 +31,21 @@ signUpForm.addEventListener('submit', (e) => {
     });
 }); 
 
-// Logout
-const logout = document.querySelector("#logout");
+// // Logout
+// const logout = document.querySelector("#logout");
 
-logout.addEventListener("click", (e) => {
-  e.preventDefault();
-  auth.signOut().then(() => {
-    console.log("signup out");
-  });
-});
+// logout.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   auth.signOut().then(() => {
+//     console.log("signup out");
+//   });
+// });
 
 // SingIn
 const signInForm = document.querySelector("#login-form");
 
 signInForm.addEventListener("submit", (e) => {
+  console.log('click googe')
   e.preventDefault();
   const email = signInForm["login-email"].value;
   const password = signInForm["login-password"].value;
@@ -98,40 +99,40 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-// Login with Google
-const googleButton = document.querySelector("#googleLogin");
+ function observador (){
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log(' EXISTE USUARIO')
+    } else {
+      console.log('NO EXISTE USUARIO')
+    }
+  });
 
-googleButton.addEventListener("click", (e) => {
-  // e.preventDefault();
+ }
+
+
+
+
+
+function aparece(){
+  var contenido = document.getElementById('contenido')
+  contenido.innerHTML =  `
+
+
+    <p> hola </p>;
+    <a onclick="cerrar" data-toggle="modal" class="btn btn-outline-info " >Cerrar Sesion</a>
+    `;
   
+  }
 
-  const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider).then((result) => {
-    console.log(result);
-    console.log("google sign in");
-    signInForm.reset();
-  $("#signinModal").modal("hide");
-  })
-  .catch(err => {
-    console.log(err);
-  })
-});
 
-// Login with Facebook
-const facebookButton = document.querySelector('#facebookLogin');
+  function cerrar(){
+    
 
-facebookButton.addEventListener('click', e => {
-  e.preventDefault();
-  signInForm.reset();
-  $("#signinModal").modal("hide");
-
-  const provider = new firebase.auth.FacebookAuthProvider();
-  auth.signInWithPopup(provider).then((result) => {
-    console.log(result);
-    console.log("facebook sign in");
-  })
-  .catch(err => {
-    console.log(err);
-  })
-
-})
+    firebase.auth.signOut().then (function(){
+      console.log(saliendo)
+    })
+    .catch (function(error){
+       console.log(error)
+    })
+  }

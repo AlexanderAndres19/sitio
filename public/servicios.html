@@ -8,7 +8,15 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/whatsapp.css">
+    <link rel="stylesheet" href="js/main.js">
+   <style>
 
+IMG.displayed {
+	display: block;
+	margin-left: auto;
+	margin-right: auto }
+   </style>
+    
         
   </head>
   <body>
@@ -29,14 +37,15 @@
     </a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <div class="navbar-nav mr-auto ml-auto text-center">
-      <a class="nav-item nav-link " href="index.html">Inicio</a>
-      <a class="nav-item nav-link" href="#">Nosotros</a>
+    
+      <a class="nav-item nav-link" href="index.html">Nosotros</a>
       <a class="nav-item nav-link active" href="servicio.html">Servicios</a>
-      <a class="nav-item nav-link" href="#">Contacto</a>
+      <a class="nav-item nav-link" href="https://api.whatsapp.com/send?phone=56951148407&text=%C2%A1Hola!%20En%20que%20podemos%20ayudarte.">Contacto</a>
     </div>
     <div class="d-flex flex-row justify-content-center nav-link mr-2">
       <a href="#" class="btn btn-outline-primary nav-link mr-2 " data-toggle="modal" data-target="#signinModal"  >Iniciar Sesión</a>
       <a href="#" class="btn btn-outline-danger " data-toggle="modal" data-target="#signupModal">Registrate</a>
+      <a id="contenido" ></a>
     </div>
     </div>
   </nav>
@@ -90,9 +99,7 @@
             <div class="form-group">
               <input type="password" id="login-password" class="form-control" placeholder="Contraseña" required>
             </div>
-            <button type="submit" class="btn btn-secondary btn-block">Ingresa</button>
-            <button type="button" class="btn btn-danger btn-block" id="googleLogin">Ingresa con Google</button>
-            <button type="button" class="btn btn-primary btn-block" id="facebookLogin">Ingresa with Facebook</button>
+            <button type="submit" class="btn btn-info btn-block">Ingresa</button>
           </form>
         </div>
       </div>
@@ -123,18 +130,21 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h3>¡Hola! Ingresá tu e-mail</h3>
+                  <h4 class="modal-title" id="registro">Inspecion de Gasfiteria </h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
+
+                  
                 </div>
-                <div class="modal-body">
-                  <form id="signup-form">
-                    <div class="form-group">
-                      <input type="email" id="signup-email" class="form-control" placeholder="Usuario" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                  </form>
+                <div class="modal-body  ">
+                  <h5 class="modal-title text-center" id="exampleModalLongTitle">Contratar Servicio  </h5>
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="B57FVTEQ7RXT8">
+                    <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                    </form>
                 </div>
          
               </div>
@@ -159,13 +169,19 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Servicio 1</h5>
+                  <h4 class="modal-title" id="exampleModalLongTitle">Inspecion Electrica </h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus facilis cupiditate est nesciunt fugiat eos voluptatem doloribus eius unde eligendi dolor minima odio dolore, autem eveniet rem non, ex obcaecati sit asperiores sequi expedita ipsa! Inventore corporis ipsum, expedita consequatur, similique, odio nisi facilis itaque alias saepe aliquid voluptate obcaecati ad blanditiis iure. Ex porro, quis, nemo maxime illo ipsum officia illum quam pariatur corporis ut, hic accusantium? Repellendus deserunt dicta pariatur ex repudiandae odit provident illo temporibus molestias, eveniet nesciunt nobis voluptate labore sit in veritatis, ducimus voluptates id obcaecati mollitia delectus quasi. Reiciendis laudantium facere inventore voluptatem consequatur.</p>
+                <div class="modal-body  ">
+                  <h5 class="modal-title text-center" id="exampleModalLongTitle">Contratar Servicio  </h5>
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="B57FVTEQ7RXT8">
+                    <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                    </form>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -192,21 +208,28 @@
           </button>
 
           <!-- Modal -->
-          <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal fade" id="Inspecion de Construcion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Servicio 1</h5>
+                  <h5 class="modal-title" id="Inspecion de Construcion">Inspecion de Construcion</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus facilis cupiditate est nesciunt fugiat eos voluptatem doloribus eius unde eligendi dolor minima odio dolore, autem eveniet rem non, ex obcaecati sit asperiores sequi expedita ipsa! Inventore corporis ipsum, expedita consequatur, similique, odio nisi facilis itaque alias saepe aliquid voluptate obcaecati ad blanditiis iure. Ex porro, quis, nemo maxime illo ipsum officia illum quam pariatur corporis ut, hic accusantium? Repellendus deserunt dicta pariatur ex repudiandae odit provident illo temporibus molestias, eveniet nesciunt nobis voluptate labore sit in veritatis, ducimus voluptates id obcaecati mollitia delectus quasi. Reiciendis laudantium facere inventore voluptatem consequatur.</p>
+               
                 </div>
                 <div class="modal-footer">
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="B57FVTEQ7RXT8">
+                    <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                    </form>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
+                
               </div>
             </div>
           </div>
@@ -215,7 +238,10 @@
     </div>
   </div>
  
-</section>    
+</section> 
+
+
+
   
 
 
@@ -268,6 +294,6 @@
   const auth = firebase.auth();
   const fs = firebase.firestore();
 </script>
-<script src="/public/js/main.js"></script>
+<script src="js/main.js"></script>
   </body>
 </html>
