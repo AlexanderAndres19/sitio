@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- CSS local -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/whatsapp.css">
+
+    <style>
+
+        IMG.displayed {
+            display: block;
+            margin-left: auto;
+            margin-right: auto }
+           </style>
+            
+
+
+    <!-- FB -->
+    <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+   
+    
+</head>
+<body>
+         <!-- Button whatsapp -->
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+         <a href="https://api.whatsapp.com/send?phone=56951148407&text=%C2%A1Hola!%20En%20que%20podemos%20ayudarte." class="float" target="_blank">
+         <i class="fa fa-whatsapp my-float"></i>
+         </a>
+      <!--Fin Button whatsapp -->
+    <nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md sticky-top">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+        <img src="images/logoPng.png" width="90" height="50" class="d-inline-block align-top" alt="Logo Bootstrap">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div class="navbar-nav mr-auto ml-auto text-center">
+        
+          <a class="nav-item nav-link active" href="inicio.html">Nosotros</a>
+          <a class="nav-item nav-link " href="servicios.html">Servicios</a>
+          <a class="nav-item nav-link" href="https://api.whatsapp.com/send?phone=56951148407&text=%C2%A1Hola!%20En%20que%20podemos%20ayudarte.">Contacto</a>
+        </div>
+        <div class="d-flex flex-row justify-content-center nav-link mr-2">
+          <a href="#" class="btn btn-primary nav-link mr-2 " data-toggle="modal" data-target="#signinModal"  >Iniciar Sesión</a>
+          <a href="#" class="btn btn-danger " data-toggle="modal" data-target="#signupModal">Registrate</a>
+          <a id="contenido" ></a>
+        </div>
+        </div>
+      </nav>
+      <!-- fin menú de navegación -->
+    
+    
+      <div class="modal fade" id="signupModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>Registra tu e-mail y Contraseña</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              
+                <div class="form-group">
+                  <input type="email" id="email" class="form-control " placeholder="E-mail" required>
+                </div>
+                <div class="form-group">
+                  <input type="password" id="contrasena" class="form-control" placeholder="Contraseña" required>
+                </div>
+                <button onclick="registrar()"   class="btn btn-info btn-block">Enviar
+                </button>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+      
+      <!-- MODA DE INICIO SESION -->
+      <div class="modal fade" id="signinModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+              <h3>Iniciar Sesión</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              
+                <div class="form-group">
+                  <input type="email" id="email2" class="form-control" placeholder="Ingresa email" required>
+                </div>
+                <div class="form-group">
+                  <input type="password" id="contrasena2" class="form-control" placeholder="Ingresa contraseña" required>
+                </div>
+                <button onclick="ingreso()" class="btn btn-info btn-block">Acceder</button>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+  
+      <section id="indez" ></section>
+
+
+      <section id="contenido2" ></section>
+
+
+      
+
+
+
+
+
+
+    <!-- <h4>Registro de usuarios</h4>
+    <input id="email" type="email" placeholder="Ingresa email">
+    <input id="contrasena" type="password" placeholder="Ingresa contraseña">
+    <button onclick="registrar()">Enviar</button>
+
+    <h4>Ingreso de usuarios</h4>
+    <input id="email2" type="email" placeholder="Ingresa email">
+    <input id="contrasena2" type="password" placeholder="Ingresa contraseña">
+    <button onclick="ingreso()">Acceder</button> -->
+
+    <div id="contenido">
+        
+    </div>
+
+
+    
+    <script src="/public/js/main.js"></script>
+    <script src="app.js"></script>
+
+
+
+
+
+ <!-- jQuery first, then Tether, then Bootstrap JS. -->
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

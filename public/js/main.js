@@ -1,138 +1,108 @@
-const loggedOutLinks = document.querySelectorAll(".logged-out");
-const loggedInLinks = document.querySelectorAll(".logged-in");
+//configuración personal de Firebase
+firebase.initializeApp({
+  apiKey: "AIzaSyBvSrgVBQS61SixeHR4UHjXWAe-ETyoPDc",
+authDomain: "elite-thunder-194318.firebaseapp.com",
+projectId: "elite-thunder-194318"
+});
 
-const loginCheck = (user) => {
-  if (user) {
-    loggedInLinks.forEach((link) => (link.style.display = "block"));
-    loggedOutLinks.forEach((link) => (link.style.display = "none"));
-  } else {
-    loggedInLinks.forEach((link) => (link.style.display = "none"));
-    loggedOutLinks.forEach((link) => (link.style.display = "block"));
-  }
-};
+// Initialize Cloud Firestore through Firebase
+var db = firebase.firestore();
 
-// SignUp
-const signUpForm = document.querySelector('#signup-form');
+//Agregar documentos
+function guardar(){
+  var nombre = document.getElementById('nombre').value;
+  var apellido = document.getElementById('apellido').value;
+  var direccion = document.getElementById('direccion').value;
+  var telefono = document.getElementById('telefono').value;
+  var fecha = document.getElementById('fecha').value;
 
-signUpForm.addEventListener('submit', (e) => {
-  e.preventDefault();
+  db.collection("users").add({
+      first: nombre,
+      last: apellido,
+      born: fecha,
+      direccion: direccion,
+      telefono: telefono,
 
-  const email = signUpForm["signup-email"].value;
-  const password = signUpForm["signup-password"].value;
+  })
+  .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      document.getElementById('nombre').value = '';
+      document.getElementById('apellido').value = '';
+      document.getElementById('direccion').value = '';
+      document.getElementById('telefono').value = '';
+      document.getElementById('fecha').value = '';
+  })
+  .catch(function(error) {
+      console.error("Error adding document: ", error);
+  });
+}
 
-  // Authenticate the User
-  auth
-    .createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // clear the form
-      signUpForm.reset();
-      // close the modal
-      $("#signupModal").modal("hide");
-    });
-}); 
-
-// // Logout
-// const logout = document.querySelector("#logout");
-
-// logout.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   auth.signOut().then(() => {
-//     console.log("signup out");
-//   });
-// });
-
-// SingIn
-const signInForm = document.querySelector("#login-form");
-
-signInForm.addEventListener("submit", (e) => {
-  console.log('click googe')
-  e.preventDefault();
-  const email = signInForm["login-email"].value;
-  const password = signInForm["login-password"].value;
-
-  // Authenticate the User
-  auth.signInWithEmailAndPassword(email, password).then((userCredential) => {
-    // clear the form
-    signInForm.reset();
-    // close the modal
-    $("#signinModal").modal("hide");
-    
+//Leer documentos
+var tabla = document.getElementById('tabla');
+db.collection("users").onSnapshot((querySnapshot) => {
+  tabla.innerHTML = '';
+  querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data().first}`);
+      tabla.innerHTML += `
+      <tr>
+      
+      <td>${doc.data().first}</td>
+      <td>${doc.data().last}</td>
+      <td>${doc.data().direccion}</td>
+      <td>${doc.data().telefono}</td>
+      <td>${doc.data().born}</td>
+      <td><button class="btn btn-danger" onclick="eliminar('${doc.id}')">Eliminar</button></td>
+      <td><button class="btn btn-warning" onclick="editar('${doc.id}','${doc.data().first}','${doc.data().last}','${doc.data().born}')">Editar</button></td>
+      </tr>
+      `
   });
 });
 
-// Posts
-const postList = document.querySelector(".posts");
-const setupPosts = (data) => {
-  if (data.length) {
-    let html = "";
-    data.forEach((doc) => {
-      const post = doc.data();
-      const li = `
-      <li class="list-group-item list-group-item-action">
-        <h5>${post.title}</h5>
-        <p>${post.content}</p>
-      </li>
-    `;
-      html += li;
-    });
-    postList.innerHTML = html;
-  } else {
-    postList.innerHTML = '<h4 class="text-white">Login to See Posts</h4>';
-  }
-};
+//borrar documentos
+function eliminar(id){
+  db.collection("users").doc(id).delete().then(function() {
+      console.log("Document successfully deleted!");
+  }).catch(function(error) {
+      console.error("Error removing document: ", error);
+  });
+}
 
-// events
-// list for auth state changes
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    console.log("signin");
-    fs.collection("posts")
-      .get()
-      .then((snapshot) => {
-        setupPosts(snapshot.docs);
-        loginCheck(user);
+//editar documentos
+function editar(id,nombre,apellido,fecha){
+
+  document.getElementById('nombre').value = nombre;
+  document.getElementById('apellido').value = apellido;
+  document.getElementById('fecha').value = fecha;
+  var boton = document.getElementById('boton');
+  boton.innerHTML = 'Editar';
+
+  boton.onclick = function(){
+      var washingtonRef = db.collection("users").doc(id);
+      // Set the "capital" field of the city 'DC'
+
+      var nombre = document.getElementById('nombre').value;
+      var apellido = document.getElementById('apellido').value;
+      var fecha = document.getElementById('fecha').value;
+
+      return washingtonRef.update({
+          first: nombre,
+          last: apellido,
+          born: fecha
+      })
+      .then(function() {
+          console.log("Document successfully updated!");
+          boton.innerHTML = 'Guardar';
+          document.getElementById('nombre').value = '';
+          document.getElementById('apellido').value = '';
+          document.getElementById('fecha').value = '';
+      })
+      .catch(function(error) {
+          // The document probably doesn't exist.
+          console.error("Error updating document: ", error);
       });
-  } else {
-    console.log("signout");
-    setupPosts([]);
-    loginCheck(user);
   }
-});
-
- function observador (){
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      console.log(' EXISTE USUARIO')
-    } else {
-      console.log('NO EXISTE USUARIO')
-    }
-  });
-
- }
+}
 
 
 
 
-
-function aparece(){
-  var contenido = document.getElementById('contenido')
-  contenido.innerHTML =  `
-
-
-    <p> hola </p>;
-    <a onclick="cerrar" data-toggle="modal" class="btn btn-outline-info " >Cerrar Sesion</a>
-    `;
-  
-  }
-
-
-  function cerrar(){
-    
-
-    firebase.auth.signOut().then (function(){
-      console.log(saliendo)
-    })
-    .catch (function(error){
-       console.log(error)
-    })
-  }

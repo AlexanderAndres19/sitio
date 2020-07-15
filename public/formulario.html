@@ -9,9 +9,24 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/whatsapp.css">
 
+     <!-- Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
     <style>
-        body{
+      div.first {
+            opacity: 0.7;
+          
+      }
+      h1{
+        color:white;
+      }
+      div.second {
+            opacity: 0.6;
+      }
 
+
+        body{
+          
           
   margin: 0;
   background-image: url('/public/images/bg-1.jpg');
@@ -61,7 +76,7 @@
     </a>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <div class="navbar-nav mr-auto ml-auto justify-content-cente">
-      <a class="nav-item nav-link " href="index.html">Inicio</a>
+      <a class="nav-item nav-link " href="inicio.html">Inicio</a>
       <a class="nav-item nav-link " href="servicio.html">Servicios</a>
       <a class="nav-item nav-link" href="https://api.whatsapp.com/send?phone=56951148407&text=¡Hola! ¿Te podemos ayudar ?.">Contacto</a>
     </div>
@@ -73,138 +88,109 @@
   </nav>
   <!-- fin menú de navegación -->
 
-  <section class="container my-4">
+  <section class="container my-8">
     <div class="row">
-        <div class="col-md-6">
-            <div class="well well-sm">
-                <form class="form-horizontal " method="post">
-                    <fieldset>
-                        <legend class="text-uppercase text-left header text-white text-up">Formulario de contratacion</legend>
-                     <div class="row-6">
-                        <div class="form-group col-md-8" > <!-- State Button -->
-                          <label for="servicios" class="control-label text-white" >Tipo de servicio</label>
-                          <select class="form-control" id="servicios" aria-placeholder="Elige el servicio" >
-                              <option value="agua">Gasfiteria</option>
-                              <option value="luz">Electricidad</option>
-                              <option value="m3">Construccion</option>
+        <div class="col-md-6 ">
+          <h1>Registrar servicio</h1>
+            <div class="card-body first">
+                
                   
-                          </select>                    
-                        </div>
-                    </div>
+                  
+                  <input type="text" id="nombre" placeholder="nombre" class="form-control my-3">
+                  <input type="text" id="apellido" placeholder="apellido" class="form-control my-3">
+                  <input type="text" id="direccion" placeholder="direccion" class="form-control my-3">
+                  <input type="text" id="telefono" placeholder="telefono" class="form-control my-3">
+                  <input type="text" id="fecha" placeholder="fecha" class="form-control my-3">
+                  
+                  
+                  
+                  <button class="btn btn-info my-3" id="boton" onclick="guardar()">Guardar</button>
+                  
+                </div>
+              
+                  <table class=" table my-8">
+                      <thead>
+                        <tr>
+                          
+                          <th scope="col">nombre</th>
+                          <th scope="col">Last</th>
+                          <th scope="col">Direccion</th>
+                          <th scope="col">telefono</th>
+                          <th scope="col">Born</th>
+                          
+                          <th scope="col">Eliminar</th>
+                          <th scope="col">Editar</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tabla">
+                      </tbody>
+                    </table>
 
-                        <div class="form-group text-up row-6">
-                           
-                            <div class="col-md-8">
-                                <label for="" class="text-white">Nombre</label>
-                                <input id="nombre" name="name" type="text" placeholder="Ingresa tu nombre" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            
-                            <div class="col-md-8">
-                                <label for="" class="text-white">Apellido</label>
-                                <input id="apellido" name="name" type="text" placeholder="Ingresa tu apellido" class="form-control">
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            
-                            <div class="col-md-8">
-                                <label for="" class="text-white">Direccion</label>
-                                <input id="email" name="email" type="email" placeholder="Ingresa tu Direccion" class="form-control">
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            
-                            <div class="col-md-8">
-                                <label for="" class="text-white">Telefono</label>
-                                <input id="phone" name="phone" type="tel" placeholder="Ingresa numero de contacto" class="form-control">
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            
-                            <div class="col-md-8">
-                              <label for="" class="text-white">Fecha</label>
-                                <input id="phone" name="phone" type="date" placeholder="Ingresa fecha de servicio" class="form-control">
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-warning btn-lg">Enviar</button>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
+
+
+
+
+              
+            
+          </div>
+
+          <section class=" col-md-6" >
+            <div class="container my-5 py-5 ">
+          <div class="card-header first ">
+            <div class="card-body">
+                 
+       <div class="container ">
+        <div class="row ">
+            <div class="col-lg-12">
+            <div class="card shadow-lg p-2 mb-5 bg-white  ">
+                 <div class="card-header second">Realiza el pago del servicio seleccionado </div>
+                <div class="card-body ">
+                  <div class="modal-footer justify-content-center">
+                    
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                      <input type="hidden" name="cmd" value="_s-xclick">
+                      <input type="hidden" name="hosted_button_id" value="B57FVTEQ7RXT8">
+                      <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                      <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                      </form>
+                    
+                  </div>
+
             </div>
+          </div>
         </div>
+          </section>
+    </div>
+   </section> 
 
-
-
+       
 
         
-    </div>
-
+    
 
 
     
-</div>
+
 
     
   
 
 
-  <!-- Footer -->
-  <footer class="container-fluid bg-inverse">
-    <div class="row text-white py-4 text-white">
-      
-      <div class="col-md-3">
-        <h4 class="lead">Síguenos  </h4>
-        <a href="#"><span class="badge badge-primary">Facebook</span></a>
-        <a href="https://www.youtube.com/watch?time_continue=3&v=HSf9dCcnGnE&feature=emb_logo"><span class="badge badge-danger">Youtube</span></a>
-      </div>
-
-
-      <!-- Copyright -->
-    </div>
-  </footer>
-  <!-- Fin Footer -->
     
       
     
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.min.js"></script>
+     <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
 
-    <!--dsdf-->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-firestore.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyBvSrgVBQS61SixeHR4UHjXWAe-ETyoPDc",
-    authDomain: "elite-thunder-194318.firebaseapp.com",
-    databaseURL: "https://elite-thunder-194318.firebaseio.com",
-    projectId: "elite-thunder-194318",
-    storageBucket: "elite-thunder-194318.appspot.com",
-    messagingSenderId: "703822754226",
-    appId: "1:703822754226:web:fb1b32b8a711bbf91df4ab",
-    measurementId: "G-727GB60720"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const fs = firebase.firestore();
-</script>
-<script src="/public/js/main.js"></script>
+<script src="js/main.js"></script>
   </body>
 </html>

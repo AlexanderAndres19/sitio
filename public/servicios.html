@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/whatsapp.css">
     <link rel="stylesheet" href="js/main.js">
+
+    <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
+   
    <style>
 
 IMG.displayed {
@@ -27,90 +30,92 @@ IMG.displayed {
     </a>
  <!--Fin Button whatsapp -->
  
-  <!-- menú de navegación -->
-  <nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md sticky-top">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="index.html">
-    <img src="images/logoPng.png" width="90" height="50" class="d-inline-block align-top" alt="Logo Bootstrap">
-    </a>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <div class="navbar-nav mr-auto ml-auto text-center">
-    
-      <a class="nav-item nav-link" href="index.html">Nosotros</a>
-      <a class="nav-item nav-link active" href="servicio.html">Servicios</a>
-      <a class="nav-item nav-link" href="https://api.whatsapp.com/send?phone=56951148407&text=%C2%A1Hola!%20En%20que%20podemos%20ayudarte.">Contacto</a>
-    </div>
-    <div class="d-flex flex-row justify-content-center nav-link mr-2">
-      <a href="#" class="btn btn-outline-primary nav-link mr-2 " data-toggle="modal" data-target="#signinModal"  >Iniciar Sesión</a>
-      <a href="#" class="btn btn-outline-danger " data-toggle="modal" data-target="#signupModal">Registrate</a>
-      <a id="contenido" ></a>
-    </div>
-    </div>
-  </nav>
-  <!-- fin menú de navegación -->
+ <nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md sticky-top">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="index.html">
+  <img src="images/logoPng.png" width="90" height="50" class="d-inline-block align-top" alt="Logo Bootstrap">
+  </a>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+  <div class="navbar-nav mr-auto ml-auto text-center">
+  
+    <a class="nav-item nav-link " href="inicio.html">Nosotros</a>
+    <a class="nav-item nav-link active " href="servicios.html">Servicios</a>
+    <a class="nav-item nav-link" href="https://api.whatsapp.com/send?phone=56951148407&text=%C2%A1Hola!%20En%20que%20podemos%20ayudarte.">Contacto</a>
+  </div>
+  <div class="d-flex flex-row justify-content-center nav-link mr-2">
+    <a href="#" class="btn btn-primary nav-link mr-2 " data-toggle="modal" data-target="#signinModal"  >Iniciar Sesión</a>
+    <a href="#" class="btn btn-danger " data-toggle="modal" data-target="#signupModal">Registrate</a>
+    <a id="contenido" ></a>
+  </div>
+  </div>
+</nav>
+<!-- fin menú de navegación -->
 
 
-  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4>Registra tu e-mail y Contraseña</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Registra tu e-mail y Contraseña</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+          <div class="form-group">
+            <input type="email" id="email" class="form-control " placeholder="E-mail" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="contrasena" class="form-control" placeholder="Contraseña" required>
+          </div>
+          <button onclick="registrar()"   class="btn btn-info btn-block">Enviar
           </button>
-        </div>
-        <div class="modal-body">
-          <form id="signup-form">
-            <div class="form-group">
-              <input type="email" id="signup-email" class="form-control" placeholder="E-mail" required>
-            </div>
-            <div class="form-group">
-              <input type="password" id="signup-password" class="form-control" placeholder="Contraseña" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Registrate
-            </button>
-          </form>
-        </div>
+       
       </div>
     </div>
   </div>
+</div>
+
+
+
+<!-- MODA DE INICIO SESION -->
+<div class="modal fade" id="signinModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h3>Iniciar Sesión</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+          <div class="form-group">
+            <input type="email" id="email2" class="form-control" placeholder="Ingresa email" required>
+          </div>
+          <div class="form-group">
+            <input type="password" id="contrasena2" class="form-control" placeholder="Ingresa contraseña" required>
+          </div>
+          <button onclick="ingreso()" class="btn btn-info btn-block">Acceder</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
 
 
   
-  <!-- MODA DE INICIO SESION -->
-  <div class="modal fade" id="signinModal" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-          <h3>Iniciar Sesión</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form id="login-form">
-            <div class="form-group">
-              <input type="email" id="login-email" class="form-control" placeholder="E-mail" required>
-            </div>
-            <div class="form-group">
-              <input type="password" id="login-password" class="form-control" placeholder="Contraseña" required>
-            </div>
-            <button type="submit" class="btn btn-info btn-block">Ingresa</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 
-
-  <!--  card -->
-  <section class="container my-5 py-5">
+<section id="servicio" >
+<!--  card -->
+<section class="container my-5 py-5">
   <h3 class="text-uppercase text-center mb-4">Servicios</h3>
   <p class="lead text-center mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus hic sint non rem quibusdam. Dicta facilis dignissimos deserunt, mollitia dolores.</p>
   <div class="card-deck">
@@ -130,7 +135,7 @@ IMG.displayed {
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title" id="registro">Inspecion de Gasfiteria </h4>
+                  <h4 class="modal-title" id="registro">Registro </h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -138,13 +143,14 @@ IMG.displayed {
                   
                 </div>
                 <div class="modal-body  ">
-                  <h5 class="modal-title text-center" id="exampleModalLongTitle">Contratar Servicio  </h5>
-                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="B57FVTEQ7RXT8">
-                    <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                    <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-                    </form>
+                  <div class="form-group">
+                    <input type="email" id="email" class="form-control " placeholder="E-mail" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" id="contrasena" class="form-control" placeholder="Contraseña" required>
+                  </div>
+                  <button onclick="registrar()"   class="btn btn-info btn-block">Enviar
+                  </button>
                 </div>
          
               </div>
@@ -153,6 +159,9 @@ IMG.displayed {
         <!-- Fin Modal 1 -->
       </div>
     </div>
+
+
+    
     <div class="card">
       <a href="#"><img class="card-img-top img-fluid" src="images/FONDO4R.jpg" alt="Card image cap"></a>
       <div class="card-block">
@@ -169,23 +178,22 @@ IMG.displayed {
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h4 class="modal-title" id="exampleModalLongTitle">Inspecion Electrica </h4>
+                  <h4 class="modal-title" id="exampleModalLongTitle">Registrate </h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body  ">
-                  <h5 class="modal-title text-center" id="exampleModalLongTitle">Contratar Servicio  </h5>
-                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="B57FVTEQ7RXT8">
-                    <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                    <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-                    </form>
+                  <div class="form-group">
+                    <input type="email" id="email" class="form-control " placeholder="E-mail" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" id="contrasena" class="form-control" placeholder="Contraseña" required>
+                  </div>
+                  <button onclick="registrar()"   class="btn btn-info btn-block">Enviar
+                  </button>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
+            
               </div>
             </div>
           </div>
@@ -212,23 +220,22 @@ IMG.displayed {
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="Inspecion de Construcion">Inspecion de Construcion</h5>
+                  <h5 class="modal-title" id="Inspecion de Construcion">Registrate</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
-               
+                  <div class="form-group">
+                    <input type="email" id="email" class="form-control " placeholder="E-mail" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" id="contrasena" class="form-control" placeholder="Contraseña" required>
+                  </div>
+                  <button onclick="registrar()"   class="btn btn-info btn-block">Enviar
+                  </button>
                 </div>
-                <div class="modal-footer">
-                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="B57FVTEQ7RXT8">
-                    <input type="image" src="https://www.paypalobjects.com/es_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                    <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-                    </form>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
+              
                 
               </div>
             </div>
@@ -240,60 +247,30 @@ IMG.displayed {
  
 </section> 
 
+</section>
+
+<section id="contenido2"></section>
+
+  
+
 
 
   
 
 
-  <!-- Footer -->
-  <footer class="container-fluid bg-inverse">
-    <div class="row text-white py-4 text-white">
-      
-      <div class="col-md-3">
-        <h4 class="lead">Síguenos  </h4>
-        <a href="#"><span class="badge badge-primary">Facebook</span></a>
-        <a href="https://www.youtube.com/watch?time_continue=3&v=HSf9dCcnGnE&feature=emb_logo"><span class="badge badge-danger">Youtube</span></a>
-      </div>
+  
+  
+  
+  <!-- jQuery first, then Tether, then Bootstrap JS. -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
 
 
-      <!-- Copyright -->
-    </div>
-  </footer>
-  <!-- Fin Footer -->
-    
-      
-    
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="js/bootstrap.min.js"></script>
 
-    <!--dsdf-->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+  <script src="/public/js/main.js"></script>
+  <script src="app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-firestore.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyBvSrgVBQS61SixeHR4UHjXWAe-ETyoPDc",
-    authDomain: "elite-thunder-194318.firebaseapp.com",
-    databaseURL: "https://elite-thunder-194318.firebaseio.com",
-    projectId: "elite-thunder-194318",
-    storageBucket: "elite-thunder-194318.appspot.com",
-    messagingSenderId: "703822754226",
-    appId: "1:703822754226:web:fb1b32b8a711bbf91df4ab",
-    measurementId: "G-727GB60720"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const fs = firebase.firestore();
-</script>
-<script src="js/main.js"></script>
   </body>
 </html>
